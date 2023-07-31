@@ -1,35 +1,25 @@
-type X = number;
-type U = number;
-type Y = number;
+// Conditional Types는 특정 조건에 따라 타입을 결정하는 기능이다.
+// 이를 통해 더욱 유연한 타입 변환을 수행하고, 복잡한 타입 관계를 다룰 수 있다.
 
-// T가 U에 할당될 수 있으면 타입은 X가 되고 그렇지 않다면 타입이 Y가 된다는 것을 뜻한다.
-type Conditional<T> = T extends U ? X : Y;
+// 조건부 타입 기본 개념
+// 조건부 타입은 조건식과 참일 때의 타입, 거짓일 때의 타입을 지정하여 작성한다.
+// 조건부 타입은 다음과 같은 구문으로 작성된다.
 
-// 새로운 Type에 Conditional 타입을 사용해서 U를 주면 Type은 X가 된다.
-// Conditional<T>가 U에 할당된다면 X가 되는것인데, 그렇다면 U는 X인듯
-// 그래서 Type은 X가 된다.
-type Type = Conditional<U>;
+// 예시1 )
+// type ConditionalType<T> = T extends SomType ? TrueType : FalseType;
+// T가 SomeType에 포함된다면 ConditionalType<T>는 TrueType을 갖게되고, 아니면 FalseType을 갖게된다.
 
-// 조건부 타입 T extends U ? X : Y는 X나 Y로 결정되거나, 혹은 지연된다.
+// 예시 2)
+// type UnwrapPromise<T>는 제공된 타입 T가 Promise로 랩핑된 타입
+// UnwrapPromise<T>는 타입 T가 Promise인 경우 반환값의 타입을 추출, 그렇지 않으면 T를 그대로 반환
+type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
 
-// 왜냐하면 조건이 하나 혹은 그 이상의 타입 변수에 의존하기 때문
-// T나 U가 타입 변수를 포함할 대, X또는 Y로 결정되거나 지연될지,
-// 타입 시스템이 T가 항상 U에 할당할 수 있는지에 대해 충분히 정보를 가지고 있는지 여부로 결정된다.
+// fetchData라는 함수의 리턴값은 Promise이고 그 중에서도 string 타입을 리턴
+function fetchData(): Promise<string> {
+  return Promise.resolve("Hello, TypeScript");
+}
 
-type User = {
-  uid: number;
-  account: string;
-  isVerified: boolean;
-};
-
-type Guest = {
-  name: string;
-};
-
-// function createUser(id: number): User;
-// function createUser(name: string): Guest;
-// function createUser(nameOrid: number | string): Guest | User;
-
-type GuestOrUser<T extends number | string> = T extends number ? User : Guest;
-
-const gusetInfo:GuestOrUser<'guest'> = {name :"Guest"};
+// Return Type<typeof fetchData>는 fetchData함수의 반환 타입을 추론하기 위해 typeof 연산자 사용
+// UnwrapPromise 호출은 Return Type<typeof fetchData>의 반환값을 언랩하는 것을 명시
+// 언랩이란? promise객체에 래핑되어 있는 값을 추출하여 내부 값을 반환하는 것이다.
+type ResponseTyped = UnwrapPromise<ReturnType<typeof fetchData>>;
