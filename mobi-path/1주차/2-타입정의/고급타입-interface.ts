@@ -35,10 +35,10 @@ type ChangePerson = {
 // 두 가지 방법은 타입에 대해 확장할 때 다르게 표현
 // ex)
 // type 확장
-type User = {
+type User1 = {
   name: string;
 };
-type Player = User & {
+type Player = User1 & {
   age: number;
 };
 
