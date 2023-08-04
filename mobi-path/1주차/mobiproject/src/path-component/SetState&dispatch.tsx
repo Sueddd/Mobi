@@ -7,7 +7,7 @@ import { useState, Dispatch, SetStateAction } from "react";
 interface LowerProps {
   word: string;
   setWord: Dispatch<SetStateAction<string>>;
-  //   setWord: (word: string) => string;
+  //   setWord: (word: string) => string; > 기존에 사용하던
 }
 
 const Lower = ({ word, setWord }: LowerProps) => {
@@ -16,7 +16,7 @@ const Lower = ({ word, setWord }: LowerProps) => {
   };
   return (
     <div>
-      <button onClick={handleClick}>클릭하면 글자 변경</button>
+      <button onClick={handleClick}>state 변경</button>
       <p>{word}</p>
     </div>
   );
