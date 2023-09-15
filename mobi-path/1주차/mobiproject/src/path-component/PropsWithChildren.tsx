@@ -21,6 +21,8 @@ export const PropsWithChildrenWrapper = ({ children }: PropsWithChildren) => {
   return (
     <div>
       <div>{children}</div>
+      <div>{children}</div>
+      <div>{children}</div>
     </div>
   );
 };

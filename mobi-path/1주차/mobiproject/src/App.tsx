@@ -18,9 +18,9 @@ function App() {
         title="ReactElement"
         discription="ReactNode와는 달리 원시타입을 허용하지 않고 jsx 문법만"
       />
-      <ChildrenWrapper>여기는 일반 children 문법을 써봤어</ChildrenWrapper>
+
       <PropsWithChildrenWrapper>
-        여기는 PropsWithChildren을 써봤어
+        <ChildrenWrapper>여기는 일반 children 문법을 써봤어</ChildrenWrapper>
       </PropsWithChildrenWrapper>
       <ObjectRefWrapper />
       <SetStateWrapper />
