@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Post, fetchData } from "..";
-import ChangeRoute from "./[pid]";
+import Post from "@/types";
+import { fetchData } from "@/api";
 
 export default function PortfolioPage() {
   const router = useRouter();
