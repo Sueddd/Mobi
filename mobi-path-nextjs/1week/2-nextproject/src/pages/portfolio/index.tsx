@@ -2,18 +2,11 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Post from "@/types";
 import { fetchData } from "@/api";
+import { usePost } from "@/hooks/usePost";
 
 export default function PortfolioPage() {
   const router = useRouter();
-  const [postList, setPostList] = useState<Post[]>([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const data: Post[] = await fetchData();
-      setPostList(data);
-    };
-    fetchPosts();
-  }, []);
+  const postList = usePost();
 
   return (
     <>
