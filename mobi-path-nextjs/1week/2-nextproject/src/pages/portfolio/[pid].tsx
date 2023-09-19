@@ -8,6 +8,7 @@ import { usePost } from "@/hooks/usePost";
 export default function ChangeRoute() {
   const router = useRouter();
   const { pid } = router.query;
+  // const postId = Array.isArray(pid) ? pid[0] : pid;
   const postList = usePost(pid);
 
   return (
