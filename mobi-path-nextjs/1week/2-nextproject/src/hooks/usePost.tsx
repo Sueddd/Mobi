@@ -10,8 +10,7 @@ export function usePost(pid?: string) {
       const data: Post[] = await fetchData();
       if (pid !== undefined) {
         setPostList(data.filter((v) => v.id == Number(pid)));
-      }
-      setPostList(data);
+      } else setPostList(data);
     };
     fetchPosts();
   }, [pid]);
