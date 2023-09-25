@@ -160,5 +160,5 @@ Colocation
 ## 🦾 multiple root layouts
 
 ```
-여러 개의 root layouts를 만드려면, 최상위의 layout.js 파일을 지우고, 각 라우트 그룹에 layout.js파일을 추가한다. 이는 앱이 완전히 다룬 UI 또는 경험을 가진 섹션으로 분할하는 데 유용하다.
+작성 예정
 ```
