@@ -127,3 +127,47 @@ async function fetchData(params : {id: string}) {
 ## axios 방식을 사용한 SSG, SSR, ISR
 
 실습 해보고 난 후 정리 예정
+
+import { PostData } from "../types/post";
+
+const PostApi = async (): Promise<PostData[]> => {
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("에러입니댕");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export default PostApi;
+
+import Link from "next/link";
+import FetchData from "../apis/FetchData";
+import styles from "@/app/page.module.css";
+import OnePost from "@/components/one-post";
+
+const Posts = async () => {
+  const posts = await FetchData();
+
+  return (
+    <div className={styles.container}>
+      <Link href="/" className={styles.btn}>
+        메인으로 돌아가기
+      </Link>
+      <h1>Post List</h1>
+      {posts.map((post) => (
+        <OnePost key={post.id} post={post} />
+      ))}
+    </div>
+  );
+};
+export default Posts;

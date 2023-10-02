@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Post from "@/types";
-import { fetchData } from "@/api";
 import { usePost } from "@/hooks/usePost";
 
 export default function PortfolioPage() {

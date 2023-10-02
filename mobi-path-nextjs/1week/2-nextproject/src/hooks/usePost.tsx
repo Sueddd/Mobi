@@ -1,4 +1,4 @@
-import { fetchData } from "@/api";
+import { fetchData } from "@/_state/_client/api";
 import Post from "@/types";
 import { useEffect, useState } from "react";
 
